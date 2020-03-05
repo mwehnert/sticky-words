@@ -22,9 +22,13 @@ const usePoem = currentWeek => {
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
-            const urlPrefix = window.location.href.indexOf('localhost') > -1 ? 'http://poetrydb.org' : '/api';
+            // const urlPrefix = window.location.href.indexOf('localhost') > -1 ? 'http://poetrydb.org' : '/api';
             try {
-                const res = await fetch(`${urlPrefix}/linecount/${lineCount}:abs/author,title,lines.json`);
+                // TODO: find a way to get the poems via api
+                // removed because _redirects does not fix https/http api issue
+                // const res = await fetch(`${urlPrefix}/linecount/${lineCount}:abs/author,title,lines.json`);
+                // static alternativ
+                const res = await fetch(`/${lineCount}.json`);
                 const json = await res.json();
                 setResponse(json.sort(sortByTitle));
                 setIsLoading(false);
