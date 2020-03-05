@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import useFetch from './useFetch';
 
 const sortByTitle = (a, b) => {
     if (a.title < b.title) {
@@ -34,10 +33,6 @@ const usePoem = currentWeek => {
         };
         fetchData();
     }, [lineCount]);
-
-    const [poemResponse, poemError, poemLoading] = useFetch(
-        `http://poetrydb.org/linecount/${lineCount}:abs/author,title,lines.json`
-    );
 
     const pickPoemForDay = weekNumber => {
         return poems => {
